@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block 'cabecalho' %}
+{% load static %}
+<link href="{% static 'css/contato.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block titulo_pagina %}Contato{% endblock %}
+
+{% block 'conteudo' %}
+<div class="container area-geral-contato">
+
+<main class="area_contato">
+    <div>
+        <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Matriz - Vassouras</span>
+        <div>
+            <img src="{% static '/media/rg_veiculos.jpg' %}" class="float-md-start me-3" style="width:100%; border-radius:5px;">
+        </div>
+    </div>
+    <div>
+        <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Informações</span>
+        <div class="area_dados">
+            <span><i class="fa-solid fa-house"></i> Av. Sebastião Manoel Furtado, 850, Santa Amélia</span>
+            <span><i class="fa-solid fa-house"></i> CEP: 27700-000 - Vassouras - RJ</span>
+            <span><i class="fa-solid fa-phone"></i> (24) 2471-1774</span>
+            <br>
+            <span><i class="fa-solid fa-calendar"></i> Horário de Atendimento:</span>
+            <span><i class="fa-solid fa-calendar"></i> Segunda a Sexta, das 8h às 17h30min</span>
+            <span><i class="fa-solid fa-calendar"></i> Sábado, das 9h às 14h.</span>
+            <span><i class="fa-solid fa-calendar"></i> Oficina - Segunda a Sexta, das 8h às 18h.</span>
+            <br>
+            <br>
+            <p style="font-size:16px; color: #d1d5db">
+                Envie-nos suas dúvidas, comentários, sugestões, reclamações ou outras informações. Será um prazer atendê-lo.
+            </p>
+        </div>
+    </div>
+</main>
+</div>
+
+{% endblock 'conteudo' %}

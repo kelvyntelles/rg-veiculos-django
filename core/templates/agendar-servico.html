@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block 'cabecalho' %}
+{% load static %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block titulo_pagina %}Agendar Serviço{% endblock %}
+
+{% block 'conteudo' %}
+<div class="container">
+
+  <div class="mt-4">
+    <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Agendar um serviço</span>
+    <form class="row g-3" action="{% url 'agendar_servico' %}" method="POST"> {% csrf_token %}
+      {% if messages %}
+       <br>
+       {% for message in messages %}
+        <section class="alert {{message.tags}}">
+          {{message}}
+        </section>
+       {% endfor %}
+      {% endif %}
+       <br>
+      <div class="col-md-6">
+        <label class="form-label">Seu nome</label>
+        <input type="text" class="form-control bg-dark" data-bs-theme="dark" name="nome">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Telefone</label>
+        <input type="tel" class="form-control bg-dark" data-bs-theme="dark" name="telefone">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Modelo do carro</label>
+        <input type="text" class="form-control bg-dark" data-bs-theme="dark" name="modelo">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Ano do carro</label>
+        <input type="number" class="form-control bg-dark" data-bs-theme="dark" name="ano">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Tipo de serviço</label>
+        <select id="inputState" class="form-select bg-dark" data-bs-theme="dark" name="tipo_servico">
+          <option selected>Oficina</option>
+          <option>Funilaria</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Data do agendamento</label>
+        <input type="date" class="form-control" data-bs-theme="dark" name="data">
+      </div>
+      <div class="col-12">
+        <label class="form-label">Descrição do serviço</label>
+        <textarea class="form-control bg-dark" data-bs-theme="dark" rows="3" name="descricao"></textarea>
+      </div>
+      <div class="col-12">
+        <input type="submit" value="Solicitar agendamento" class="btn btn-danger w-100">
+      </div>
+    </form>
+  </div>
+
+</div>
+
+{% endblock 'conteudo' %}

@@ -1,0 +1,26 @@
+.imagem-banner {
+    height: 350px;
+    objectFit: cover;
+
+    @media only screen and (max-width: 600px) {
+        height: 200px;
+        objectFit: contain;
+    }
+}
+
+.area-carros {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+

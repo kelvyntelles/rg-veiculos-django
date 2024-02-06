@@ -1,0 +1,33 @@
+:root{
+    --dark-color: #000716;
+}
+
+body{
+    background-color: var(--dark-color) !important;
+    color: white !important;
+}
+
+.area_botao_whatsapp {
+    background: green;
+    padding: 10px;
+    color: #FFF;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0 30px 30px 0;
+    cursor: pointer;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.texto_botao {
+    display: none;
+}
+
+.area_botao_whatsapp:hover .texto_botao {
+    display: inline;
+}

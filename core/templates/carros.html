@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block 'cabecalho' %}
+{% load static %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block titulo_pagina %}Carros{% endblock %}
+
+{% block 'conteudo' %}
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-inner">
+    {% for banner in banners %}
+      <div class="carousel-item active">
+        <img src="/media/{{banner.imagem}}" class="d-block w-100 imagem-banner" alt="...">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br>
+<div class="container">
+
+  <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Nossos carros</span>
+  <div class="area-carros">
+    {% for carro in carros %}
+      <div class="card bg-dark" data-bs-theme="dark">
+        <img src="/media/{{carro.imagem_capa}}" class="card-img-top" alt="..." style="max-height: 130px;">
+        <div class="card-body">
+          <h5 class="card-title">{{ carro.marca }} - {{ carro.modelo }}</h5>
+          <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ carro.descricao }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><span class="kmRodados">{{ carro.km_rodados }}</span> km rodados</li>
+          <li class="list-group-item preco">{{ carro.valor }}</li>
+        </ul>
+        <div class="card-body">
+          <a href="{%url 'carro' carro.id %}" type="button" class="btn btn-danger w-100">Descrição completa</a>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona todos os elementos com a classe 'preco'
+        var elementosPreco = document.querySelectorAll('.preco');
+
+        elementosPreco.forEach(function (elemento) {
+            var preco = parseFloat(elemento.textContent);
+            var precoFormatado = preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            elemento.textContent = precoFormatado;
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona todos os elementos com a classe 'preco'
+        var elementosKmRodados = document.querySelectorAll('.kmRodados');
+
+        elementosKmRodados.forEach(function (elemento) {
+            var kmRodados = parseFloat(elemento.textContent);
+            var kmFormatado = kmRodados.toLocaleString('pt-br', {minimumFractionDigits: 2});
+            elemento.textContent = kmFormatado;
+        });
+    });
+</script>
+
+{% endblock 'conteudo' %}

@@ -1,0 +1,65 @@
+.imagem-carro {
+    height: 250px;
+    objectFit: cover;
+
+    @media only screen and (max-width: 600px) {
+        height: 200px;
+        objectFit: contain;
+    }
+}
+
+.area-geral-carro {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.area-carro {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.descricao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.descricao-marca-modelo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.descricao-km-valor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.titulo {
+    font-size: 16px;
+    color: white;
+}
+
+.texto {
+    font-size: 14px;
+    color: #d1d5db;
+}

@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block 'cabecalho' %}
+{% load static %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block titulo_pagina %}Home{% endblock %}
+
+{% block 'conteudo' %}
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-inner">
+    {% for banner in banners %}
+      <div class="carousel-item active">
+        <img src="/media/{{banner.imagem}}" class="d-block w-100 imagem-banner" alt="...">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br>
+<div class="container">
+
+  <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Nossos carros</span>
+  <div class="area-carros">
+    {% for carro in carros %}
+      <div class="card bg-dark" data-bs-theme="dark">
+        <img src="/media/{{carro.imagem_capa}}" class="card-img-top" alt="..." style="max-height: 130px;">
+        <div class="card-body">
+          <h5 class="card-title">{{ carro.marca }} - {{ carro.modelo }}</h5>
+          <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ carro.descricao }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><span class="kmRodados">{{ carro.km_rodados }}</span> km rodados</li>
+          <li class="list-group-item preco">{{ carro.valor }}</li>
+        </ul>
+        <div class="card-body">
+          <a href="{%url 'carro' carro.id %}" type="button" class="btn btn-danger w-100">Descrição completa</a>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+  <a href="{% url 'carros' %}" style="display: flex; justify-content: right; margin-top: 5px; text-decoration: none; color: white;">
+    <span class="text-decoration-underline" style="font-size: 12px; cursor: pointer;">Visualizar todos os carros</span>
+  </a>
+
+  <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Quem somos?</span>
+  <div class="mt-2">
+    <img src="{% static 'media/rg_veiculos.jpg' %}" class="img-fluid float-md-start me-3" style="width: 400px; border-radius: 5px;" />
+    <p style=" font-size: 14px; color: #d1d5db">
+      Inaugurada no dia 27 de outubro de 2005, a RG Veículos possui uma história
+      traçada no objetivo de satisfazer seus clientes e ter excelência em todos os
+      serviços prestados. Uma das características da filosofia de negócio da RG
+      Veículos é a valorização do Pós-Vendas, pois uma assistência técnica
+      qualificada, assim como a rapidez e pontualidade na execução dos serviços
+      demonstram o quanto o cliente é importante para nós.
+    </p>
+    <p style="font-size: 14px; color: #d1d5db">
+      Referência de qualidade Fiat, a RG Veículos oferece assistência técnica
+      especializada, funilaria e pintura, departamento de autopeças e acessórios
+      originais. Em 2011, a RG Veículos foi certificada pelo IQA como Padrões de Atendimento Fiat.
+    </p>
+    <div class="card bg-dark" data-bs-theme="dark">
+      <div class="card-header">
+        Nota
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 14px;">O IQA, órgão de certificação acreditado pelo Inmetro e criado pela ANFAVEA, Sindipeças, Sindirepa e outras entidades do setor, atesta a conformidade dos Padrões de Atendimento Fiat nos processos de vendas e pós-vendas, levando em consideração a excelência no atendimento, com foco na satisfação do cliente, a entrega de produtos e reparos dentro do prazo, instalações e limpeza.</p>
+          <footer class="blockquote-footer">IQA - <cite title="Source Title">ANFAVEA</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  <br>
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <span class="d-flex gap-1 fs-5 text-center mb-2"><strong class="text-danger">|</strong> Nossos serviços</span>
+  <a href="{% url 'agendar_servico' %}" type="button" class="btn btn-danger">Agendar serviço</a>
+</div>
+<div>
+    <div class="accordion bg-dark" id="accordionExample" data-bs-theme="dark">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Oficina
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <span style="font-size: 14px;">
+              A Oficina da RG Veículos se caracteriza pela qualificação de seus profissionais e pela qualidade de sua estrutura. Todos os nossos profissionais fazem parte de um programa de treinamento técnico e teórico realizado pela fábrica da Fiat.
+            </span>
+            <span style="font-size: 14px;">
+              Nossos consultores técnicos são capacitados através dos Padrões de Atendimento Fiat, realizando um atendimento completo, desde o exame, diagnóstico, orçamento, acompanhamento na execução dos serviços até a explicação final ao cliente.
+            </span>
+            <span style="font-size: 14px;">
+              A RG Veículos tem capacidade de atender mais de 300 veículos por mês. Para isso, dispomos de facilidades para o cliente: Serviço de Leva e Traz, agendamento de serviços, descontos especiais e condições facilitadas de pagamento.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Funilaria
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <span style="font-size: 14px;">
+              Nossa filosofia é fazer os serviços de funilaria e pintura com alta qualidade, no menor tempo e com preço justo, satisfazendo as expectativas de nossos clientes.
+            </span>
+            <span style="font-size: 14px;">
+              Nosso Departamento de Funilaria e Pintura possui sete profissionais altamente qualificados prestando os serviços de: Chapeação, Pintura, Serviços Elétricos, Serviços Mecânicos, Solda em Geral, Espelhamento, Polimento, Montagem e Desmontagem de Carroceria, Laboratório de Tintas, Alinhamento de Carrocerias e Monoblocos e Pequenos Reparos.
+            </span>
+            <span style="font-size: 14px;">
+              Quando precisar de serviços em Funilaria e Pintura, pode contar com a nossa estrutura e a excelência de nossos serviços.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Peças e Acessórios
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <span style="font-size: 14px;">
+              Na RG Veículos você encontra grande estoque de peças e acessórios originais Fiat, com a qualidade do serviço de instalação, com nossa equipe especialmente treinada e habilitada a lidar exclusivamente com veículos da linha Fiat.
+            </span>
+            <span style="font-size: 14px;">
+              Precisou de alguma peça?
+              Entre em contato com a RG Veículos. Um dos maiores estoques do sul do estado do Rio, com mais de seis mil itens, disponibilizando toda a peça genuína Fiat que você procura.
+            </span>
+            <span style="font-size: 14px;">
+              Entre em contato conosco e conheça nossos descontos e condições facilitadas de pagamento.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona todos os elementos com a classe 'preco'
+        var elementosPreco = document.querySelectorAll('.preco');
+
+        elementosPreco.forEach(function (elemento) {
+            var preco = parseFloat(elemento.textContent);
+            var precoFormatado = preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            elemento.textContent = precoFormatado;
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona todos os elementos com a classe 'preco'
+        var elementosKmRodados = document.querySelectorAll('.kmRodados');
+
+        elementosKmRodados.forEach(function (elemento) {
+            var kmRodados = parseFloat(elemento.textContent);
+            var kmFormatado = kmRodados.toLocaleString('pt-br', {minimumFractionDigits: 2});
+            elemento.textContent = kmFormatado;
+        });
+    });
+</script>
+
+{% endblock 'conteudo' %}

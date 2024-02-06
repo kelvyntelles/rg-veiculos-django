@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block 'cabecalho' %}
+{% load static %}
+<link href="{% static 'css/carro.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block titulo_pagina %}Fiat - {{ carro.modelo }}{% endblock %}
+
+{% block 'conteudo' %}
+<div class="container area-geral-carro">
+
+<div class="area-carro">
+    <div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/media/{{carro.imagem_capa}}" class="d-block w-100 rounded imagem-carro" alt="...">
+            </div>
+              {% for imagem in carro.imagens.all %}
+                <div class="carousel-item">
+                  <img src="/media/{{imagem.imagem}}" class="d-block w-100 rounded imagem-carro" alt="...">
+                </div>
+              {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+    </div>
+    <div class="descricao w-100">
+        <div class="descricao-marca-modelo">
+            <span class="texto"><strong class="titulo">Marca: </strong>{{ carro.marca }}</span>
+            <span class="texto"><strong class="titulo">Modelo: </strong>{{ carro.modelo }}</span>
+            <span class="texto"><strong class="titulo">Ano: </strong>{{ carro.ano }}</span>
+        </div>
+        <div class="descricao-km-valor">
+            <div>
+                <strong class="titulo">KM rodados: </strong><span class="texto kmRodados">{{ carro.km_rodados }}</span>
+            </div>
+            <div>
+                <strong class="titulo">Valor: </strong><span class="texto preco">{{ carro.valor }}</span>
+            </div>
+        </div>
+        <div>
+            <strong class="titulo">Descrição:</strong>
+            <p class="texto">{{ carro.descricao }}</p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona todos os elementos com a classe 'preco'
+        var elementosPreco = document.querySelectorAll('.preco');
+
+        elementosPreco.forEach(function (elemento) {
+            var preco = parseFloat(elemento.textContent);
+            var precoFormatado = preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            elemento.textContent = precoFormatado;
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleciona todos os elementos com a classe 'preco'
+        var elementosKmRodados = document.querySelectorAll('.kmRodados');
+
+        elementosKmRodados.forEach(function (elemento) {
+            var kmRodados = parseFloat(elemento.textContent);
+            var kmFormatado = kmRodados.toLocaleString('pt-br', {minimumFractionDigits: 2});
+            elemento.textContent = kmFormatado;
+        });
+    });
+</script>
+{% endblock 'conteudo' %}
